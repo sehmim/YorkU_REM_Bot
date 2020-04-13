@@ -27,7 +27,7 @@ let mailOptions = {
 };
 // schedule tasks to be run on the server every 3 hours
 // Runs every three hours, turn * * * * * to test each minute
-cron.schedule("* * * * *", function () {
+cron.schedule("0 */3 * * *", function () {
     console.log("---------------------");
     console.log("Running Cron Job");
     console.log("---------------------");
@@ -50,7 +50,7 @@ cron.schedule("* * * * *", function () {
                         });
                     }
                     else {
-                        console.log("Courses NOT Added :( \nWill try again in 3h");
+                        console.log("Courses NOT Added :( \nill try again in 3h");
                     }
                 }).catch(err => console.log(err))
             }
