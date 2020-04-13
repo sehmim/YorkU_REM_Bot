@@ -9,6 +9,10 @@ const scrapper = require('./scrapper');
 
 app = express();
 
+const server = app.listen("8000");
+
+// const SCHEDULING_INTERVAL = "0 */3 * * *"
+const SCHEDULING_INTERVAL = "* * * * *"
 
 // Email 
 let transporter = nodemailer.createTransport({
@@ -25,9 +29,10 @@ let mailOptions = {
     subject: 'Course Added',
     text: process.env.COURSE_CODE + ' was added to REM for you by a friendly bot! :)'
 };
+
 // schedule tasks to be run on the server every 3 hours
 // Runs every three hours, turn * * * * * to test each minute
-cron.schedule("0 */3 * * *", function () {
+const job = cron.schedule(SCHEDULING_INTERVAL, function () {
     console.log("---------------------");
     console.log("Running Cron Job");
     console.log("---------------------");
@@ -44,8 +49,13 @@ cron.schedule("0 */3 * * *", function () {
                         transporter.sendMail(mailOptions, function (error, info) {
                             if (error) {
                                 console.log(error);
+                                // stop server
+                                server.close(function () { console.log('Doh :('); });
                             } else {
                                 console.log('Email sent: ' + info.response);
+                                // stop server
+                                job.stop()
+                                server.close(function () { console.log('Doh :('); });
                             }
                         });
                     }
@@ -57,9 +67,6 @@ cron.schedule("0 */3 * * *", function () {
         })
     }).catch(err => console.log(err));
 });
-
-app.listen("8000");
-
 
 
 // Helper Functions
