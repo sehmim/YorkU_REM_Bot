@@ -21,7 +21,7 @@ MY_EMAIL_PASS=xxxxx
 SEND_TO_EMAIL=xxxxxx@gmail.com
 ```
 
-That it! 
+That is it! 
 
 now run
 ```
