@@ -11,8 +11,8 @@ app = express();
 
 const server = app.listen("8000");
 
-// const SCHEDULING_INTERVAL = "0 */3 * * *"
-const SCHEDULING_INTERVAL = "* * * * *"
+const SCHEDULING_INTERVAL = "0 */3 * * *"
+// const SCHEDULING_INTERVAL = "* * * * *"
 
 // Email 
 let transporter = nodemailer.createTransport({
