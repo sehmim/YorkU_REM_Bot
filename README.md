@@ -19,6 +19,7 @@ COURSE_CODE=XXXXXX
 MY_EMAIL=xxxxxx@gmail.com
 MY_EMAIL_PASS=xxxxx
 SEND_TO_EMAIL=xxxxxx@gmail.com
+HOUR=3
 ```
 
 That is it! 

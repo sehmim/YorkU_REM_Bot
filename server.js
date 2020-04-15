@@ -11,7 +11,7 @@ app = express();
 
 const server = app.listen("8000");
 
-const SCHEDULING_INTERVAL = "0 */3 * * *"
+const SCHEDULING_INTERVAL = "0 */" + process.env.HOUR + "5 * * *"
 // const SCHEDULING_INTERVAL = "* * * * *"
 
 // Email 

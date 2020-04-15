@@ -38,10 +38,10 @@ scrapper = {
 
     selectCourse: async (course) => {
         // Click on Add Course button 
-        await scrapper.page.click("input[name='5.1.27.1.23']")
+        await scrapper.page.click("input[name='5.1.27.1.23']", { delay: 3000 })
 
         // Fill in text area
-        await scrapper.page.type("input[name='5.1.27.7.7']", course)
+        await scrapper.page.type("input[name='5.1.27.7.7']", course, { delay: 3000 })
         // await scrapper.page.$eval("input[name='5.1.27.7.7']", el => el.value = course);
 
         // press Add course
