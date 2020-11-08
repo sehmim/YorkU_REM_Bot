@@ -7,7 +7,7 @@ scrapper = {
     page: null,
 
     initialize: async () => {
-        scrapper.browser = await puppeteer.launch({ headless: true });
+        scrapper.browser = await puppeteer.launch({ headless: false });
         scrapper.page = await scrapper.browser.newPage();
 
         await scrapper.page.goto(BASE_URL, { waitUntil: 'networkidle2' });
@@ -30,7 +30,7 @@ scrapper = {
         });
 
         // Select Summer Term
-        await scrapper.page.select("select", "1")
+        await scrapper.page.select("select", process.env.ACADEMIC_SECTION)
 
         // Press Continue
         await scrapper.page.click("input[name='5.5.1.27.1.13']", { delay: 2000 })

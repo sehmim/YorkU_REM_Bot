@@ -7,12 +7,15 @@ dotenv.config();
 // import file
 const scrapper = require('./scrapper');
 
-app = express();
+const app = express();
 
 const server = app.listen("8000");
 
-const SCHEDULING_INTERVAL = "0 */" + process.env.HOUR + "5 * * *"
-// const SCHEDULING_INTERVAL = "* * * * *"
+console.log("---------------------");
+console.log("Running Server On Port 8000");
+console.log("---------------------");
+console.log("Cron Job Scheduled 0 * * * * --> every hour")
+
 
 // Email 
 let transporter = nodemailer.createTransport({
@@ -32,13 +35,16 @@ let mailOptions = {
 
 // schedule tasks to be run on the server every 3 hours
 // Runs every three hours, turn * * * * * to test each minute
-const job = cron.schedule(SCHEDULING_INTERVAL, function () {
+const job = cron.schedule('0 * * * *', function () {
+    
     console.log("---------------------");
     console.log("Running Cron Job");
     console.log("---------------------");
     console.log("Logging in...");
     initAndLogin().then(() => {
+        console.log("Logging in Success");
         console.log("Adding courses...");
+        console.log("REM CODE -->" + process.env.COURSE_CODE)
         coursePurifier(process.env.COURSE_CODE).forEach(course => {
             if (!(course.isAdded)) {
                 operation(course.courseID).then(result => {
@@ -62,10 +68,16 @@ const job = cron.schedule(SCHEDULING_INTERVAL, function () {
                     else {
                         console.log("Courses NOT Added :( \nill try again in 3h");
                     }
-                }).catch(err => console.log(err))
+                }).catch(err => {
+                    console.log("Course code not found")
+                    console.log(err)
+                })
             }
         })
-    }).catch(err => console.log(err));
+    }).catch(err => {
+        console.log("Couldn't log in")
+        console.log(err)
+    });
 });
 
 

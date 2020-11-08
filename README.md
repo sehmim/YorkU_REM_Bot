@@ -19,7 +19,7 @@ COURSE_CODE=XXXXXX
 MY_EMAIL=xxxxxx@gmail.com
 MY_EMAIL_PASS=xxxxx
 SEND_TO_EMAIL=xxxxxx@gmail.com
-HOUR=3
+ACADEMIC_SECTION=[0..n] this refers to the dropdown section where you select your semester
 ```
 
 That is it! 
@@ -29,6 +29,13 @@ now run
 npm start
 ```
 This will start the server. 
+
+### Side Notes
+If you want to see whats happening in the background change this to true in 10 of the file the file scrapper.js
+
+```
+scrapper.browser = await puppeteer.launch({ headless: false });
+```
 
 You can have it keep running! or you can deploy it anywhere like heroku
 
