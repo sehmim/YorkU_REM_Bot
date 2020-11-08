@@ -19,7 +19,7 @@ COURSE_CODE=XXXXXX
 MY_EMAIL=xxxxxx@gmail.com
 MY_EMAIL_PASS=xxxxx
 SEND_TO_EMAIL=xxxxxx@gmail.com
-ACADEMIC_SECTION=[0..n] this refers to the dropdown section where you select your semester
+ACADEMIC_SECTION=x this refers to the dropdown section where you select your semester. e.g 0 for winter, 1 for summer (as of Nov 2020)
 ```
 
 That is it! 
